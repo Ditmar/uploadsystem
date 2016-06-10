@@ -1,0 +1,7 @@
+<template name="actionsmenu">
+	{{#if isInRole 'admin'}}
+		<button type="button" id="create_lab" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Create Lab</button>
+		<button type="button" id="create_matter" class="btn btn-default"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>Create Matter</button>
+		
+	{{/if}}
+</template>

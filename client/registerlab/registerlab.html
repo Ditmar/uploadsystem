@@ -1,0 +1,81 @@
+<template name="addstudents">
+	<div class="modal fade" id="modal-addstudents">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Add Students</h4>
+				</div>
+				<div class="modal-body">
+					<input type="text" name="" id="input" class="form-control" value="" required="required" pattern="" title="" placeholder="Search Student for name">
+					<ul class="list-group">
+						<li class="list-group-item">Ditmar Studens</li>
+						<li class="list-group-item">vany</li>
+						<li class="list-group-item">Placed</li>
+					</ul>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+<template name="registerlab">
+	{{>addstudents}}
+	<div class="modal fade" id="modal-id">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Add Lab</h4>
+				</div>
+				<div class="modal-body">
+				{{>upload_bootstrap callbacks=myCallBacks}}
+					<form action="" method="POST" id="formLab" role="form">
+						
+						<div class="form-group">
+							<label for="">Pdf</label>
+							
+							<input type="text" name="name" class="form-control" id="" placeholder="Name Lab field">
+							<textarea name="description" id="inputDescription" class="form-control" rows="3" required="required"></textarea>
+							<input type="hidden" name="urlPdf" value="{{urlpdf}}">
+							<input type="hidden" name="urlFile" value="{{urlfile}}">
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" name="active" value="true">
+									Validate
+								</label>
+							</div>
+							
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="save" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<ul class="list-group">
+	{{#if currentUser}}
+		{{#each matters}}
+			{{>itemlab}}
+		{{/each}}
+	{{/if}}
+	</ul>
+</template>
+<template name="itemlab">
+	<li class="list-group-item">{{name}} - {{code}} 
+	{{# if isInRole "admin" }}
+	<button type="button" id="addlab" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> add lab</button> 
+	{{/if}}
+	- <button type="button" id="golab" class="btn btn-default"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> Go</button>
+	{{#if isInRole "admin"}}
+	<button type="button" id="addstudents" class="btn btn-success"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Add Students</button>
+	{{/if}}
+		<span class="badge">{{total}}</span>
+	
+	</li>
+</template>

@@ -1,0 +1,10 @@
+<template name="listmatters">
+	<ul class="list-group">
+		{{#each matters}}
+			{{>item}}
+		{{/each}}
+	</ul>
+</template>
+<template name="item">
+	<li class="list-group-item">{{name}}} - {{code}}</li>
+</template>

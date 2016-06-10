@@ -1,0 +1,68 @@
+<template name="listlabs">
+	<ul class="list-group">
+		{{#each list}}
+			{{>labsitem}}
+		{{/each}}	
+	</ul>
+</template>
+<template name="labsitem">
+	<li class="list-group-item">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Labs</th>
+					<th>Description</th>
+					<th>Instructions</th>
+					<th>Files</th>
+					<th>Upload</th>
+					{{#if isInRole "admin"}}
+						<th>Remove</th>
+					{{/if}}
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{name}}</td>
+					<td>{{description}}</td>
+					<td><a href="{{urlPdf}}"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Download pdf</a></td>
+					<td><a href="{{urlFile}}"><span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> Download Files</a></td>
+					<td>
+						<a href="" id="btnUpload"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> Upload</a>
+					</td>
+					{{#if isInRole "admin"}}
+					<td>
+						<a href="" id="delete"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete</a>
+					</td>
+					{{/if}}
+				</tr>
+				
+			</tbody>
+			<ul>
+					{{#each i in estudentlabs}}
+						<li>
+							{{i.name}}
+						</li>
+					{{/each}}
+				</ul>
+		</table>
+		{{>modalupload}}
+	</li>
+</template>
+<template name="modalupload">
+	<div class="modal fade" id="{{_id}}">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">{{name}}</h4>
+				</div>
+				<div class="modal-body">
+					{{>upload_bootstrap callbacks=call}}
+				</div>
+				<div class="modal-footer">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
